@@ -10,6 +10,7 @@ type OrderRepository interface {
 	FindAll() ([]models.Order, error)
 	FindByID(id uint) (models.Order, error)
 	Update(order *models.Order) error
+	Delete(id uint) error
 }
 
 type orderRepository struct {
@@ -38,4 +39,8 @@ func (r *orderRepository) FindByID(id uint) (models.Order, error) {
 
 func (r *orderRepository) Update(order *models.Order) error {
 	return r.db.Save(order).Error
+}
+
+func (r *orderRepository) Delete(id uint) error {
+	return r.db.Delete(&models.Order{}, id).Error
 }

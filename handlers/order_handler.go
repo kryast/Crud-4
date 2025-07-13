@@ -59,3 +59,12 @@ func (h *OrderHandler) UpdateOrder(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, order)
 }
+
+func (h *OrderHandler) DeleteOrder(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Param("id"))
+	if err := h.service.DeleteOrder(uint(id)); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Delete failed"})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"message": "Order deleted"})
+}

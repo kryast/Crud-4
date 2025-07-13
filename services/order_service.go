@@ -10,6 +10,7 @@ type OrderService interface {
 	GetOrders() ([]models.Order, error)
 	GetOrderByID(id uint) (models.Order, error)
 	UpdateOrder(order *models.Order) error
+	DeleteOrder(id uint) error
 }
 
 type orderService struct {
@@ -34,4 +35,8 @@ func (s *orderService) GetOrderByID(id uint) (models.Order, error) {
 
 func (s *orderService) UpdateOrder(order *models.Order) error {
 	return s.repo.Update(order)
+}
+
+func (s *orderService) DeleteOrder(id uint) error {
+	return s.repo.Delete(id)
 }

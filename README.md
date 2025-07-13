@@ -21,7 +21,10 @@ curl -X PUT http://localhost:8080/orders/1 \
 -H "Content-Type: application/json" \
 -d '{
   "customer_id": 1,
-  "item": "Keyboard RGB",
+  "item": "Keyboard",
   "quantity": 1,
   "status": "paid"
 }'
+
+DELETE
+curl -X DELETE http://localhost:8080/orders/1
