@@ -9,3 +9,19 @@ curl -X POST http://localhost:8080/orders \
   "quantity": 2,
   "status": "pending"
 }'
+
+GET
+curl http://localhost:8080/orders
+
+curl http://localhost:8080/orders/1
+
+
+PUT
+curl -X PUT http://localhost:8080/orders/1 \
+-H "Content-Type: application/json" \
+-d '{
+  "customer_id": 1,
+  "item": "Keyboard RGB",
+  "quantity": 1,
+  "status": "paid"
+}'
