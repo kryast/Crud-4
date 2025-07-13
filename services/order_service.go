@@ -7,6 +7,8 @@ import (
 
 type OrderService interface {
 	CreateOrder(order *models.Order) error
+	GetOrders() ([]models.Order, error)
+	GetOrderByID(id uint) (models.Order, error)
 }
 
 type orderService struct {
@@ -19,4 +21,12 @@ func NewOrderService(r repositories.OrderRepository) OrderService {
 
 func (s *orderService) CreateOrder(order *models.Order) error {
 	return s.repo.Create(order)
+}
+
+func (s *orderService) GetOrders() ([]models.Order, error) {
+	return s.repo.FindAll()
+}
+
+func (s *orderService) GetOrderByID(id uint) (models.Order, error) {
+	return s.repo.FindByID(id)
 }
